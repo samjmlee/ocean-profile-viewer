@@ -107,3 +107,9 @@ npm test
 Code and synthetic demo: [MIT](LICENSE). Three.js retains its own MIT notice. Natural Earth geography is public domain. **The software license does not relicense observational data.** Cite the original dataset and specific product in research, retain its metadata, and follow the provider's acknowledgment instructions. See [SOURCES.md](docs/SOURCES.md) and [CITATION.cff](CITATION.cff).
 
 For a format request, include variable names, dimensions, units, processing level, a public source URL, and a small redistributable fixture. Do not post unpublished field data or credentials in issues.
+
+### White 3D workspace and XYZ coordinates
+
+In **3D · Drift & section**, choose **Globe**, **Track focus**, or **XYZ coordinates**. The white-background XYZ view shows X east / Y north in km relative to the mean track location, and Z depth in meters positive downward. This is a local equirectangular approximation (increasing distortion near the pole / across wide tracks), with the vertical exaggeration explicitly shown. It is not bathymetry.
+
+**Place names** toggles selected major ocean, sea, basin, continent and island labels. Use **Geographic labels** to isolate basins or other categories. Click a label for its category and source. These are approximate cartographic anchors, not geographic boundaries or reverse-geocoded observation locations. No Google Earth API, imagery, key or account is required. Names reference [Natural Earth](https://www.naturalearthdata.com/downloads/10m-physical-vectors/) and [USGS undersea feature documentation](https://pubs.usgs.gov/of/2014/1040/data/undersea_features.html); anchors are manually placed for readability.

@@ -20,3 +20,5 @@ Browser integration checks cover synthetic local import, malformed-file rejectio
 | ITP137 `final_g` | 20 profiles passing recognized QC; `data/P,T,S` layout and associated profile flags. |
 
 No claim is made that every historical TOP/ITP format has been tested. Native MATLAB, ragged layouts, unseen flag conventions and different variable meanings need an explicit adapter or reviewed CSV export. The finite-range filter and flags must be evaluated for each scientific question.
+
+2026-10-29: White 3D scene, XYZ physical-unit axes, clickable geographic sources and label visibility were browser-tested. Existing ITP137 Level 3 native subset (20 profiles, 56,186 samples) loaded locally; upward phase displayed 10 profiles to 760.93 m with 270 curtain triangles at 0.25 dbar display bins. Real observations remain excluded from the public repository.

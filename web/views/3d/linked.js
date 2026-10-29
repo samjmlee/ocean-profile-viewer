@@ -1,6 +1,6 @@
 'use strict';
 (() => {
- const colors=['#f3aa76','#70b7ee','#80ddaf','#c3a0f0'];
+ const colors=['#b95d16','#1676ad','#128361','#824eb0'];
  let pin=null,cacheKey='',series=[],boxes={},air=[];
  function nearestTime(t){let lo=0,hi=d.records.length-1;while(lo<hi){const mid=(lo+hi)>>1;if(d.records[mid].t<t)lo=mid+1;else hi=mid}return lo>0&&t-d.records[lo-1].t<d.records[lo].t-t?lo-1:lo}
  function setIndex(i){playing=castPlaying=false;$('play').textContent='▶';$('castPlay').textContent='Replay selected cast';index=Math.max(0,Math.min(d.records.length-1,i));phase=0;updateSelection()}
@@ -8,9 +8,9 @@
  function trackIndex(r,z){const j=nearestLevel(r,z);if(j<0)return -1;const a=r.z[j],prev=j>0?r.z[j-1]:null,next=j+1<r.z.length?r.z[j+1]:null;let half=.2;if(isnum(prev)&&isnum(next))half=Math.min(a-prev,next-a)/2;else if(isnum(prev))half=(a-prev)/2;else if(isnum(next))half=(next-a)/2;return Math.abs(z-a)<=Math.max(.005,half)+.001?j:-1}
  window.getTrackIndex=trackIndex;
  function extent(values,fallback=[0,1]){let lo=Infinity,hi=-Infinity;for(const v of values)if(isnum(v)){lo=Math.min(lo,v);hi=Math.max(hi,v)}if(lo===Infinity)return fallback;let p=Math.max(.001,(hi-lo)*.08);return [lo-p,hi+p]}
- function setup(id){const c=$(id),w=c.clientWidth,h=c.clientHeight,ratio=Math.min(devicePixelRatio,2);c.width=Math.round(w*ratio);c.height=Math.round(h*ratio);const ctx=c.getContext('2d');ctx.scale(ratio,ratio);ctx.fillStyle='#0b1722';ctx.fillRect(0,0,w,h);ctx.font='11px system-ui';return {ctx,w,h,l:52,r:w-16,t:18,b:h-40}}
- function text(g,t,x,y,align='center',color='#99b2be'){g.fillStyle=color;g.textAlign=align;g.fillText(t,x,y)}
- function stroke(g,a,b,c,e,color='#263d4c',dash=[]){g.beginPath();g.strokeStyle=color;g.lineWidth=1;g.setLineDash(dash);g.moveTo(a,b);g.lineTo(c,e);g.stroke();g.setLineDash([])}
+ function setup(id){const c=$(id),w=c.clientWidth,h=c.clientHeight,ratio=Math.min(devicePixelRatio,2);c.width=Math.round(w*ratio);c.height=Math.round(h*ratio);const ctx=c.getContext('2d');ctx.scale(ratio,ratio);ctx.fillStyle='#ffffff';ctx.fillRect(0,0,w,h);ctx.font='11px system-ui';return {ctx,w,h,l:52,r:w-16,t:18,b:h-40}}
+ function text(g,t,x,y,align='center',color='#526d7a'){g.fillStyle=color;g.textAlign=align;g.fillText(t,x,y)}
+ function stroke(g,a,b,c,e,color='#dce6eb',dash=[]){g.beginPath();g.strokeStyle=color;g.lineWidth=1;g.setLineDash(dash);g.moveTo(a,b);g.lineTo(c,e);g.stroke();g.setLineDash([])}
  function clip(o,fn){o.ctx.save();o.ctx.beginPath();o.ctx.rect(o.l,o.t,o.r-o.l,o.b-o.t);o.ctx.clip();fn();o.ctx.restore()}
  function format(v,span){return v.toFixed(span<.1?3:span<3?2:span<30?1:0)}
  function profiles(){const current=d.records[index];$('profileStamp').textContent=date(current.t)+' UTC · source #'+current.id;
@@ -21,7 +21,7 @@
    for(let j=0;j<=3;j++){const v=lo+(hi-lo)*j/3;stroke(g,X(v),t,X(v),b);text(g,format(v,hi-lo),X(v),b+20)}
    text(g,'Depth (m)',l,t-5,'left');text(g,units[k],(l+r)/2,h-5);
    function curve(rec,c,dash=[]){g.beginPath();g.strokeStyle=c;g.lineWidth=1.8;g.setLineDash(dash);let live=false;for(let j=0;j<rec.z.length;j++){const z=rec.z[j],v=rec.b[k][j];if(!isnum(z)||!isnum(v)){live=false;continue}if(live)g.lineTo(X(v),Y(z));else g.moveTo(X(v),Y(z));live=true}g.stroke();g.setLineDash([])}
-   clip(o,()=>{if(pin!==null)curve(d.records[pin],'#edf5f7',[6,3]);if($('showPrevious').checked&&index>0)curve(d.records[index-1],'#6f8390',[3,4]);curve(current,colors[k]);stroke(g,l,Y(depth),r,Y(depth),'#a9f1cf',[3,3]);const j=trackIndex(current,depth);if(j>=0&&isnum(current.b[k][j])){g.fillStyle=colors[k];g.beginPath();g.arc(X(current.b[k][j]),Y(current.z[j]),4,0,Math.PI*2);g.fill()}});
+   clip(o,()=>{if(pin!==null)curve(d.records[pin],'#263c48',[6,3]);if($('showPrevious').checked&&index>0)curve(d.records[index-1],'#6f8390',[3,4]);curve(current,colors[k]);stroke(g,l,Y(depth),r,Y(depth),'#087763',[3,3]);const j=trackIndex(current,depth);if(j>=0&&isnum(current.b[k][j])){g.fillStyle=colors[k];g.beginPath();g.arc(X(current.b[k][j]),Y(current.z[j]),4,0,Math.PI*2);g.fill()}});
    if(!vals.some(isnum))text(g,'No observations in this depth view',(l+r)/2,(t+b)/2);
   }
  }
@@ -38,7 +38,7 @@
   clip(o,()=>{g.beginPath();g.strokeStyle=color;g.lineWidth=1.4;let live=false,prev=-1;for(const i of indices){const v=values[i];if(!isnum(v)){live=false;prev=-1;continue}const x=X(d.records[i].t),y=Y(v);if(!live||prev!==i-1||!connected(prev))g.moveTo(x,y);else g.lineTo(x,y);live=true;prev=i}g.stroke();
    // Show isolated observations instead of losing them when neighboring values are missing.
    g.fillStyle=color;for(const i of indices)if(isnum(values[i])&&(i===0||i===values.length-1||!isnum(values[i-1])||!isnum(values[i+1])||!connected(i-1)||!connected(i))){g.beginPath();g.arc(X(d.records[i].t),Y(values[i]),1.8,0,Math.PI*2);g.fill()}
-   stroke(g,X(d.records[index].t),t,X(d.records[index].t),b,'#e6f1f2');if(isnum(values[index])){g.beginPath();g.fillStyle=color;g.arc(X(d.records[index].t),Y(values[index]),4,0,Math.PI*2);g.fill()}
+   stroke(g,X(d.records[index].t),t,X(d.records[index].t),b,'#263c48');if(isnum(values[index])){g.beginPath();g.fillStyle=color;g.arc(X(d.records[index].t),Y(values[index]),4,0,Math.PI*2);g.fill()}
   });if(!indices.some(i=>isnum(values[i])))text(g,'No available values in this window',(l+r)/2,(t+b)/2);
  }
  window.drawLinked=function(){if(!d.records)return;profiles();rebuildSeries();if(document.activeElement!==$('depthNumber'))$('depthNumber').value=depth.toFixed(2);$('seriesDepth').textContent=depth.toFixed(2)+' m';
