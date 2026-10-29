@@ -1,0 +1,9 @@
+{
+  "pressure": "ctd/press_filt",
+  "temperature": "ctd/temp_cor",
+  "salinity": "ctd/salinity_adj",
+  "time": "profile_info/ts_profile_start",
+  "latitude": "profile_info/latitude",
+  "longitude": "profile_info/longitude",
+  "profile_axis": 0
+}

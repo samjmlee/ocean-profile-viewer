@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+node_modules/
+data/
+imports/
+*.nc
+*.mat
+*.zip
+*.log
+test-results/
+.env*
+!.env.example

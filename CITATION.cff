@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "Cite the software version and the original observation dataset separately. See docs/SOURCES.md."
+title: "Ocean Profile Viewer: a local-first TOP and ITP observation workspace"
+type: software
+authors:
+  - name: "samjmlee"
+version: 0.1.0
+date-released: 2026-10-29
+license: MIT
+repository-code: "https://github.com/samjmlee/ocean-profile-viewer"
+url: "https://samjmlee.github.io/ocean-profile-viewer/"
+keywords:
+  - oceanography
+  - TOP
+  - ITP
+  - CTD
+  - TEOS-10
